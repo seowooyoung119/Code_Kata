@@ -6,13 +6,6 @@ using namespace std;
 
 int solution(int n) 
 {
-    if(n==(int)sqrt(n)*(int)sqrt(n))
-    {
-        return 1;
-    }
-    
-    else
-    {
-       return 2; 
-    }
+    int i = sqrt(n);
+    return ((n==(i*i))? 1: 2);
 }
