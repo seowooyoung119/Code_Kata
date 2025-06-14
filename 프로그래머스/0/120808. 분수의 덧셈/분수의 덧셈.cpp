@@ -1,24 +1,25 @@
 #include <string>
 #include <vector>
-
+#include <numeric>
 using namespace std;
 
-    //유클리드 호제법
-   int gcd(int a, int b) 
-   { 
-        if (b == 0) return a;   
-        return gcd(b, a % b);                       
-   }
-
-vector<int> solution(int numer1, int denom1, int numer2, int denom2) {
+vector<int> solution(int numer1, int denom1, int numer2, int denom2) 
+{
     vector<int> answer;
-
-    int numer = numer1 * denom2 + numer2 * denom1;
-    int denom = denom1 * denom2; 
-    int Gcd = gcd(numer,denom);
-        
-    answer.push_back(numer/Gcd); // 백터의 맨 끝에 데이터 추가해주는 함수
-    answer.push_back(denom/Gcd); // 백터의 맨 끝에 데이터 추가해주는 함수
+    
+    // 최소공배수
+    int l = lcm(denom1, denom2);
+    
+    // 분자 계산
+    int new_numer1 = numer1 * (l / denom1);
+    int new_numer2 = numer2 * (l / denom2);
+    int result_numer = new_numer1 + new_numer2;
+    
+    // 기약분수로 만들기
+    int g = gcd(result_numer, l);
+    
+    answer.push_back(result_numer / g);
+    answer.push_back(l / g);
     
     return answer;
 }
