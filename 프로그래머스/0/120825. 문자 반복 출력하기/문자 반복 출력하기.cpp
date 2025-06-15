@@ -7,9 +7,9 @@ string solution(string my_string, int n)
 {
     string answer = "";
     
-    for(int i=0; i<my_string.size(); ++i)
+    for(auto c : my_string) 
     {
-        answer.append(n,my_string[i]);   
+        answer.append(n,c);   
     }
     
     return answer;
