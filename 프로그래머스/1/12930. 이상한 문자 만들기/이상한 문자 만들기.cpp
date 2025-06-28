@@ -6,19 +6,26 @@ using namespace std;
 string solution(string s) 
 {
     string answer = "";
-    int Index = 0;
+    int Dex =0;
     
-    for(int i = 0; i<s.length(); ++i)
+    for(int i=0; i<s.length(); ++i)
     {
-        if(s[i] == ' '){answer += s[i]; Index = 0;}
-        
-        else
+        if(' ' == s[i])
         {
-            if(Index % 2 == 0)
-                answer += toupper(s[i]);
-            else
-                answer += tolower(s[i]);
-            ++Index;
+            answer += ' ';
+            Dex = 0;
+        }
+        
+        else if(Dex % 2 == 0) // 짝수
+        {
+            answer += toupper(s[i]);
+            ++Dex;
+        }
+
+        else // 앞의 둘다 아니면 다 홀수.
+        {
+            answer += tolower(s[i]);
+            ++Dex;       
         }   
     }
     return answer;
