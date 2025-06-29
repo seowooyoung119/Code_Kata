@@ -1,32 +1,14 @@
 #include <string>
-#include <vector>
 
-using namespace std;
-
-string solution(string s) 
+std::string solution(std::string s) 
 {
-    string answer = "";
-    int Dex =0;
-    
-    for(int i=0; i<s.length(); ++i)
+    std::string answer = "";
+    int Index = 0;
+    for(int i = 0; i < s.length(); ++i)
     {
-        if(' ' == s[i])
-        {
-            answer += ' ';
-            Dex = 0;
-        }
-        
-        else if(Dex % 2 == 0) // 짝수
-        {
-            answer += toupper(s[i]);
-            ++Dex;
-        }
-
-        else // 앞의 둘다 아니면 다 홀수.
-        {
-            answer += tolower(s[i]);
-            ++Dex;       
-        }   
+        if(' ' == s[i]){answer += ' '; Index = 0;}   
+        else if(0 == Index % 2){answer += toupper(s[i]); ++Index;}
+        else {answer += tolower(s[i]); ++Index;}
     }
     return answer;
 }
