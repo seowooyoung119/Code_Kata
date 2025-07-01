@@ -2,29 +2,19 @@
 
 int solution(std::string t, std::string p) 
 {
-    int Answer = 0;
-    int Tsize = t.length();
-    int Psize = p.length();
-    int Len = Tsize - Psize+1;
-    std::string StNum = "";
-    
-    for(int i = 0; i < Len; ++i)
+    int answer = 0;
+    int tSize = t.length();
+    int pSize = p.length();
+    long long pNum = std::stoll(p); // 비교 기준 숫자
+
+    for (int i = 0; i <= tSize - pSize; ++i)
     {
-        int RunSize = i + Psize;
-        
-        for(int j = i; j < RunSize; ++j)
+        std::string sub = t.substr(i, pSize); // 부분 문자열 추출
+        if (std::stoll(sub) <= pNum)
         {
-            StNum += t[j];
+            ++answer;
         }
-        
-        if(std::stoll(StNum) <= std::stoll(p))
-        {
-            ++Answer;
-        }
-        
-        StNum = "";
-        RunSize = 0;
     }
-    
-    return Answer;
+
+    return answer;
 }
