@@ -2,19 +2,22 @@
 
 int solution(std::string t, std::string p) 
 {
-    int answer = 0;
-    int tSize = t.length();
-    int pSize = p.length();
-    long long pNum = std::stoll(p); // 비교 기준 숫자
+    const int pLen = p.size();
+    const int tLen = t.size();
+    const long long pNum = std::stoll(p);
 
-    for (int i = 0; i <= tSize - pSize; ++i)
-    {
-        std::string sub = t.substr(i, pSize); // 부분 문자열 추출
-        if (std::stoll(sub) <= pNum)
-        {
-            ++answer;
-        }
-    }
+    // 람다: 주어진 위치에서 p 길이만큼 잘라 숫자로 변환
+    auto getSubNum = [&](int idx) -> long long {return std::stoll(t.substr(idx, pLen));};
 
-    return answer;
+    // 람다: 반복 길이 계산
+    auto loopRange = [&]() -> int {return tLen - pLen + 1;};
+
+    // 인라인 스타일 람다: 조건 비교
+    auto isValid = [&](int idx) -> bool {return getSubNum(idx) <= pNum;};
+
+    // 최종 집계
+    int count = 0;
+    for (int i = 0; i < loopRange(); ++i)if (isValid(i)) count++;
+    
+    return count;
 }
