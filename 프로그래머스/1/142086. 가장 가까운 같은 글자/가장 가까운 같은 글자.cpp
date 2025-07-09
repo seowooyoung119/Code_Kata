@@ -7,28 +7,24 @@ using namespace std;
 vector<int> solution(string s) 
 {
     vector<int> answer;
-    vector<pair<char, int>> compares;  // char로 저장
+    unordered_map<char, int> AP_MAP;
     
-    for (int i = 0; i < s.length(); ++i) 
+    for(int i = 0; i < s.length(); ++i)
     {
-        bool found = false;
+        char Current_AP = s[i];
         
-        for (int j = 0; j < compares.size(); ++j) 
+        if(AP_MAP.find(Current_AP) == AP_MAP.end())
         {
-            if (compares[j].first == s[i]) 
-            {
-                answer.push_back(i - compares[j].second);  // 순서 바꿈
-                compares[j].second = i;  // 위치만 업데이트
-                found = true;
-                break;  // break;
-            }
+            answer.push_back(-1);
+        }           
+        else
+        {
+            int New_Index = i - AP_MAP[Current_AP];
+            answer.push_back(New_Index);
         }
         
-        if (!found) 
-        {  // 못 찾았을 때만
-            answer.push_back(-1);
-            compares.push_back({s[i], i});
-        }
+     AP_MAP[Current_AP] = i; 
+        
     }
     return answer;
 }
