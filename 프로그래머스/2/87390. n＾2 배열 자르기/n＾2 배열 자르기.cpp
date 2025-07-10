@@ -1,24 +1,18 @@
+#include <string>
 #include <vector>
 #include <algorithm>
 
-using std::vector;
+using namespace std;
 
 vector<int> solution(int n, long long left, long long right) 
-{    
+{
     vector<int> answer;
-    
-    long long Hang=0, Yall=0;
-    int Num=0;
-    
+        
     for(long long i = left; i <= right; ++i)
     {
-        Hang = i / n; 
-        Yall = i % n;
-        
-        Num = std::max(Hang, Yall) + 1;
-        
-        answer.push_back(Num);
+        int x = i/n;
+        int y = i%n;
+        answer.push_back(max(x,y)+1);
     }
-    
     return answer;
 }
