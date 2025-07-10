@@ -7,24 +7,24 @@ using namespace std;
 vector<int> solution(string s) 
 {
     vector<int> answer;
-    unordered_map<char, int> AP_MAP;
-    
+    unordered_map<char, int> BM;
+        
     for(int i = 0; i < s.length(); ++i)
     {
-        char Current_AP = s[i];
+        char AP = static_cast<char>(s[i]);
         
-        if(AP_MAP.find(Current_AP) == AP_MAP.end())
+        if(BM.find(AP) != BM.end())
         {
-            answer.push_back(-1);
-        }           
+            int Distance = i - BM[AP];
+            answer.push_back(Distance);
+        }
         else
         {
-            int New_Index = i - AP_MAP[Current_AP];
-            answer.push_back(New_Index);
+            answer.push_back(-1);
         }
         
-     AP_MAP[Current_AP] = i; 
-        
+        BM[AP] = i; 
     }
+    
     return answer;
 }
