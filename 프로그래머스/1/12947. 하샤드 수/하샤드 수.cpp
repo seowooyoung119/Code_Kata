@@ -1,21 +1,17 @@
 #include <string>
-#include <vector>
 
 using namespace std;
 
 bool solution(int x) 
 {
-    bool answer = true;
-    int Sum = 0;
-    
     string Num = to_string(x);
-    
-    for(int i=0; i<Num.size(); ++i)
+    int Hasa = 0;
+        
+    for(char digit : Num)
     {
-        Sum = Sum + (Num[i]-48);
+        Hasa += (digit - '0');
     }
     
-    0==(x%Sum)? answer = true : answer = false;
-        
-    return answer;
+    return (x % Hasa == 0);
+    
 }
