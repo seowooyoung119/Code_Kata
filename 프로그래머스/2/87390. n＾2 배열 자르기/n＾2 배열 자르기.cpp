@@ -6,17 +6,18 @@ using std::vector;
 vector<int> solution(int n, long long left, long long right) 
 {
     vector<int> answer;
-    long long row=0, col=0;
-    int value=0;
+    
+    long long Hang=0, Yall=0;
+    int Num=0;
     
     for(long long i = left; i <= right; ++i)
     {
-        row = i / n; 
-        col = i % n;
+        Hang = i / n; 
+        Yall = i % n;
         
-        value = std::max(row, col) + 1;
+        Num = std::max(Hang, Yall) + 1;
         
-        answer.push_back(value);
+        answer.push_back(Num);
     }
     
     return answer;
