@@ -4,7 +4,7 @@
 using std::vector;
 
 vector<int> solution(int n, long long left, long long right) 
-{
+{    
     vector<int> answer;
     
     long long Hang=0, Yall=0;
