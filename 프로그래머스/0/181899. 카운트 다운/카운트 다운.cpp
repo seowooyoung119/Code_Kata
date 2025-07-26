@@ -1,17 +1,14 @@
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 vector<int> solution(int start_num, int end_num) 
 {
-    vector<int> answer;
+    int idx = 0;
     
-    answer.reserve(start_num-end_num);
+    vector<int> answer(start_num - end_num+1, start_num);
     
-    for(int i = start_num; i >= end_num; --i)
-    {
-        answer.push_back(i);
-    }
-
+    transform(answer.begin(), answer.end(), answer.begin(), [&idx](int x){return x - idx++;});
     return answer;
 }
