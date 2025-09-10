@@ -1,38 +1,28 @@
-#include <vector>
-#include <unordered_map>
-#include <algorithm>
+#include <bits/stdc++.h>
 
-int solution(int k, std::vector<int> tangerine)
+using namespace std;
+
+int solution(int k, vector<int> tangerine) 
 {
-    std::unordered_map<int, int> freq;
-
-    for (int size : tangerine) 
-    {
-        freq[size]++;
-    }
-
-    std::vector<int> counts;
-    
-    for (auto& p : freq) 
-    {
-        counts.push_back(p.second);
-    }
-    
-    std::sort(counts.begin(), counts.end(), std::greater<int>());
-
     int answer = 0;
-    int selected = 0;
+    int m = *max_element(tangerine.begin(), tangerine.end());
     
-    for (int count : counts) 
+    vector<int> v(m, 0);
+    
+    for(auto& t : tangerine)
     {
-        selected += count;
-        answer++; 
-        
-        if (selected >= k) 
-        {
-            break;
-        }
+        v[t - 1]++;
     }
-
+    
+    stable_sort(v.rbegin(), v.rend());
+    
+    for(int i = 0 ; i < v.size() ; i++)
+    {
+        answer++;
+        k -= v[i];
+        
+        if(k <= 0) return answer;
+    }
+    
     return answer;
 }
